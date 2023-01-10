@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games</title>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='responsive.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<header>
+    <h1>Sudoku!</h1>
+</header>
+<body>
+    <div id="sudoku-everything">
+        <div id="sudoku-board-container" class="unselectable"></div>
+        <div id="sudoku-timer">Time taken: 0 seconds</div>
+        <div id="sudoku-gameplay-container" class="unselectable">
+            <div id="sudoku-inputmode-container" class="align-right">
+                <div class="sudoku-button sudoku-inputmode-item sudoku-inputmode-selected" onclick="sudokuInputmodeItemOnClick('full')">
+                    <div class="sudoku-centred-text">1</div>
+                </div><div class="sudoku-button sudoku-inputmode-item" onclick="sudokuInputmodeItemOnClick('memo')">
+                    <div class="sudoku-memo-container">
+                        <div class="sudoku-memo-item" style="visibility: visible;">1</div>
+                        <div class="sudoku-memo-item">2</div>
+                        <div class="sudoku-memo-item">3</div>
+                        <div class="sudoku-memo-item">4</div>
+                        <div class="sudoku-memo-item">5</div>
+                        <div class="sudoku-memo-item">6</div>
+                        <div class="sudoku-memo-item">7</div>
+                        <div class="sudoku-memo-item">8</div>
+                        <div class="sudoku-memo-item">9</div>
+                    </div>
+                </div>
+            </div>
+            <div id="sudoku-input-container">
+                <div class="sudoku-input-item" onclick="sudokuInputItemOnClick(this)">
+                    <div class="sudoku-centred-text">1</div>
+                </div>
+                <div class="sudoku-input-item" onclick="sudokuInputItemOnClick(this)">
+                    <div class="sudoku-centred-text">2</div>
+                </div>
+                <div class="sudoku-input-item" onclick="sudokuInputItemOnClick(this)">
+                    <div class="sudoku-centred-text">3</div>
+                </div>
+                <div class="sudoku-input-item" onclick="sudokuInputItemOnClick(this)">
+                    <div class="sudoku-centred-text">4</div>
+                </div>
+                <div class="sudoku-input-item" onclick="sudokuInputItemOnClick(this)">
+                    <div class="sudoku-centred-text">5</div>
+                </div>
+                <div class="sudoku-input-item" onclick="sudokuInputItemOnClick(this)">
+                    <div class="sudoku-centred-text">6</div>
+                </div>
+                <div class="sudoku-input-item" onclick="sudokuInputItemOnClick(this)">
+                    <div class="sudoku-centred-text">7</div>
+                </div>
+                <div class="sudoku-input-item" onclick="sudokuInputItemOnClick(this)">
+                    <div class="sudoku-centred-text">8</div>
+                </div>
+                <div class="sudoku-input-item" onclick="sudokuInputItemOnClick(this)">
+                    <div class="sudoku-centred-text">9</div>
+                </div>
+            </div>
+            <div class="align-right">
+                <button id='sudoku-clear-button' class="sudoku-button" onclick="sudokuInputClear()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
+                        <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66 11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="align-right">
+                <button id='sudoku-check-button' class="sudoku-button" onclick="confirmSudokuFinish()">CHECK</button>
+            </div>
+        </div>
+        <div id="sudoku-gameover-container">
+            <div id="sudoku-gameover-correct" style="display: none;">
+                <div class="sudoku-gameover-result">Correct! :D</div>
+            </div>
+            <div id="sudoku-gameover-incorrect" style="display: none;">
+                <div class="sudoku-gameover-result">Incorrect :(</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='sudoku.js') }}"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

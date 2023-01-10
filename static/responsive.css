@@ -1,0 +1,19 @@
+/* :root {
+    --screen-threshold: 480px;
+} */
+
+/* phone screen */
+body {
+    margin: 0;
+    padding: 0 10px;
+    background-color: rgb(199 205 215);
+}
+
+/* larger than phone screen */
+@media screen and (min-device-width: 480px) and (min-width: 480px) {
+/* @media screen and (min-device-width: var(--screen-threshold)) and (min-width: var(--screen-threshold)) { */
+    body {
+        /* background-color: rgb(175, 235, 133); */
+        padding: 0 20%;
+    }
+}
