@@ -12,6 +12,18 @@
     <h1>Sudoku!</h1>
 </header>
 <body>
+    <div id="sudoku-level-container">
+        Level:
+        <div class="sudoku-level unselectable" id="sudoku-level-easy">
+            <a href="/easy" onclick="return askBeforeNewGame()">Easy</a>
+        </div>
+        <div class="sudoku-level unselectable" id="sudoku-level-medium">
+            <a href="/medium" onclick="return askBeforeNewGame()">Medium</a>
+        </div>
+        <div class="sudoku-level unselectable" id="sudoku-level-hard">
+            <a href="/hard" onclick="return askBeforeNewGame()">Hard</a>
+        </div>
+    </div>
     <div id="sudoku-everything">
         <div id="sudoku-board-container" class="unselectable"></div>
         <div id="sudoku-timer">Time taken: 0 seconds</div>

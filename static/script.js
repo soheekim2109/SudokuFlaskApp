@@ -18,6 +18,7 @@ var sudokuStartTimestamp
 var sudokuTimerInterval
 var sudokuTimeTaken
 
+var sudokuLevel
 var sudokuPuzzle
 
 var sudokuInputmode // true - full, false - memo
@@ -35,6 +36,7 @@ var sudokuGameover
 
 
 window.addEventListener('load', function () {
+    sudokuLevel = window.location.pathname.slice(1)
     getSudokuElements()
     
     createSudokuBoardItems()
@@ -45,10 +47,15 @@ window.addEventListener('load', function () {
     sudokuGameover = false
 
     resizeSudokuItemsToSquare()
+
+
+    highlightSudokuLevelBar()
+    resizeSudokuLevelBar()
 });
 
 window.addEventListener('resize', function () {
     resizeSudokuItemsToSquare()
+    resizeSudokuLevelBar()
 })
 
 document.addEventListener('keydown', function(e) {
@@ -63,6 +70,21 @@ document.addEventListener('keydown', function(e) {
 
 
 
+
+
+function askBeforeNewGame() {
+    return confirm('Your progress will be lost. Continue?')
+}
+
+function highlightSudokuLevelBar() {
+    if (sudokuLevel == 'easy') { document.getElementById('sudoku-level-easy').classList.add('sudoku-level-active') }
+    if (sudokuLevel == 'medium') { document.getElementById('sudoku-level-medium').classList.add('sudoku-level-active') }
+    if (sudokuLevel == 'hard') { document.getElementById('sudoku-level-hard').classList.add('sudoku-level-active') }
+}
+
+function resizeSudokuLevelBar() {
+    document.getElementById('sudoku-level-container').style.fontSize = sudokuBoardItems[0].clientWidth*0.4 + "px"
+}
 
 function getSudokuElements() {
     sudokuTimer = document.getElementById('sudoku-timer')
@@ -140,7 +162,7 @@ function resizeSudokuItemsToSquare() {
     // set sudoku-everything
 
     var windowRatio = 2.5
-    var sudokuEverythingRatio = 2
+    var sudokuEverythingRatio = 2.1
     var minimumPaddingWidth = 10
     
     if (window.innerHeight / window.innerWidth > windowRatio) {
@@ -218,7 +240,14 @@ function generateSudoku() {
     // })
 
     // using sudoku.js
-    sudokuPuzzle = sudoku.board_string_to_grid(sudoku.generate('easy'))
+    if (sudokuLevel == 'easy') {
+        sudokuPuzzle = sudoku.board_string_to_grid(sudoku.generate('easy'))
+    } else if (sudokuLevel == 'medium') {
+        sudokuPuzzle = sudoku.board_string_to_grid(sudoku.generate('hard'))
+    } else if (sudokuLevel == 'hard') {
+        sudokuPuzzle = sudoku.board_string_to_grid(sudoku.generate('very-hard'))
+    }
+
     for (let i = 0; i < sudokuBoardItems.length; i++) {
         let posI = sudokuBoardItems[i].getAttribute("sudokuI")
         let posJ = sudokuBoardItems[i].getAttribute("sudokuJ")

@@ -159,3 +159,25 @@ body {
 #sudoku-gameover-incorrect > .sudoku-gameover-result {
     color: rgb(212, 0, 0);
 }
+
+#sudoku-level-container {
+    /* font-size: 50%; */
+    margin: 10px 0;
+}
+.sudoku-level {
+    display: inline-block;
+    background-color: white;
+    padding: 1px 6px;
+    border: solid 2px black;
+    border-radius: 8px;
+}
+.sudoku-level > a {
+    color: black;
+    text-decoration: none;
+}
+.sudoku-level:active {
+    background-color: rgb(148, 198, 73);
+}
+.sudoku-level-active {
+    background-color: rgb(181, 255, 70);
+}
