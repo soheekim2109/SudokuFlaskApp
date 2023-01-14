@@ -16,7 +16,9 @@ https://sudoku.soheekim.dev/
 ## Features
 
 - Responsive design (works on any screen)
+- Difficulty levels
 - Write little numbers for guessing
 - Track time taken
 - Check if the solution is correct
 - Highlight wrong areas in red after checking the solution
+- Mouse/touch/keyboard input
