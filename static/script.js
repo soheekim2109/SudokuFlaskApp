@@ -37,8 +37,11 @@ var sudokuGameover
 
 window.addEventListener('load', function () {
     sudokuLevel = window.location.pathname.slice(1)
+    if (sudokuLevel == '') {
+        sudokuLevel = 'easy'
+    }
     getSudokuElements()
-    
+
     createSudokuBoardItems()
     generateSudoku()
     sudokuStartTimestamp = Date.now()
