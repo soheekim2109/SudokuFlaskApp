@@ -3,7 +3,6 @@
 /* larger than phone screen */
 @media screen and (min-device-width: 480px) and (min-width: 480px) {
     body {
-        /* background-color: rgb(175, 235, 133); */
         padding: 0 20%;
     }
 }
@@ -14,10 +13,11 @@
     --sudoku-number-font: 'Roboto', serif;
     --sudoku-button-vertical-gap: 5px;
     --sudoku-highlighted-bg-color: rgb(212 236 255);
+    --sudoku-highlighted-main-color: rgb(0 109 255);
+    --sudoku-light-color: rgb(162, 162, 162);
 }
 
 body {
-    /* background-color: rgb(241, 214, 158); */
     font-family: 'Roboto', serif;
 }
 
@@ -78,13 +78,13 @@ body {
     color: black;
 }
 .sudoku-board-item[sudokuEditable='true'] {
-    color: rgb(0 109 255);
+    color: var(--sudoku-highlighted-main-color);
 }
 .sudoku-board-item-selected {
     background-color: var(--sudoku-highlighted-bg-color);
 }
 .sudoku-board-item-wrong {
-    background-color: rgb(255, 177, 177);
+    background-color: rgb(255 223 223));
 }
 
 /* #sudoku-timer {
@@ -103,7 +103,7 @@ body {
 .sudoku-memo-item {
     visibility: hidden;
     font-family: var(--sudoku-number-font);
-    color: rgb(162, 162, 162);
+    color: var(--sudoku-light-color);
 }
 
 #sudoku-inputmode-container {
@@ -113,7 +113,7 @@ body {
 .sudoku-inputmode-item {
     display: inline-flex;
     vertical-align: middle;
-    color: rgb(0 109 255);
+    color: var(--sudoku-highlighted-main-color);
 }
 .sudoku-inputmode-item:last-of-type {
     border-left: 0;
@@ -168,16 +168,22 @@ body {
     display: inline-block;
     background-color: white;
     padding: 1px 6px;
-    border: solid 2px black;
+    border: solid 2px var(--sudoku-light-color);
     border-radius: 8px;
+    transition: all .1s ease-in-out;
 }
 .sudoku-level > a {
-    color: black;
+    color: var(--sudoku-light-color);
     text-decoration: none;
 }
-.sudoku-level:active {
-    background-color: rgb(148, 198, 73);
-}
 .sudoku-level-active {
-    background-color: rgb(181, 255, 70);
+    border-color: var(--sudoku-highlighted-main-color);
+    background-color: var(--sudoku-highlighted-bg-color);
+}
+.sudoku-level-active > a {
+    color: var(--sudoku-highlighted-main-color);
+}
+.sudoku-level:active {
+    background-color: var(--sudoku-highlighted-bg-color);
+    transform: scale(0.9);
 }
