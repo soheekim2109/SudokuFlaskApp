@@ -84,7 +84,7 @@ body {
     background-color: var(--sudoku-highlighted-bg-color);
 }
 .sudoku-board-item-wrong {
-    background-color: rgb(255 223 223));
+    background-color: rgb(255 207 207);
 }
 
 /* #sudoku-timer {
@@ -186,4 +186,12 @@ body {
 .sudoku-level:active {
     background-color: var(--sudoku-highlighted-bg-color);
     transform: scale(0.9);
+}
+
+#sourcecode {
+    padding-top: 50px;
+    text-align: center;
+}
+#sourcecode > a {
+    color: black;
 }
