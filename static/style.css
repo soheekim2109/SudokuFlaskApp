@@ -21,6 +21,8 @@ body {
     font-family: 'Roboto', serif;
 }
 
+
+
 .align-right {
     text-align: right;
 }
@@ -32,6 +34,28 @@ body {
     -ms-user-select: none;
     user-select: none;
 }
+
+
+
+#home-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+#home-button > img, #theme-button > img {
+    width: 40px;
+}
+
+
+
+
+
+
+h1 {
+    text-align: center;
+}
+
 
 .sudoku-board-item, .sudoku-inputmode-item, .sudoku-input-item {
     display: flex;
@@ -170,7 +194,7 @@ body {
     padding: 1px 6px;
     border: solid 2px var(--sudoku-light-color);
     border-radius: 8px;
-    transition: all .1s ease-in-out;
+    transition: all .07s ease-in-out;
 }
 .sudoku-level > a {
     color: var(--sudoku-light-color);
@@ -183,9 +207,12 @@ body {
 .sudoku-level-active > a {
     color: var(--sudoku-highlighted-main-color);
 }
+.sudoku-level:hover {
+    transform: scale(1.05);
+}
 .sudoku-level:active {
     background-color: var(--sudoku-highlighted-bg-color);
-    transform: scale(0.9);
+    transform: scale(0.98);
 }
 
 #sourcecode {
