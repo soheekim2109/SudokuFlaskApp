@@ -1,5 +1,7 @@
 # SudokuFlaskApp
 
+<img alt="Sudoku gameplay" src="https://github.com/soheekim2109/SudokuFlaskApp/blob/main/static/img/sudoku-game.png" width=400px /><img alt="Sudoku gameplay" src="https://github.com/soheekim2109/SudokuFlaskApp/blob/main/static/img/sudoku-leaderboard.png" width=500px />
+
 Sudoku you can play online.
 
 ## Demo
