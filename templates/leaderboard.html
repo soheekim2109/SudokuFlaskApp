@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Leaderboard | Sudoku{% endblock %}
+
+{% block content %}
+<header>
+    <h1>Leaderboard</h1>
+</header>
+<div id="leaderboard-container">
+    <div id="leaderboard-level-container">
+        <div id="leaderboard-level-title">LEVEL:
+        </div><div id="leaderboard-level-button-container">
+            <a class="leaderboard-level-button" id="leaderboard-level-easy" href="/leaderboard/easy">Easy
+            </a><a class="leaderboard-level-button" id="leaderboard-level-medium" href="/leaderboard/medium">Medium
+            </a><a class="leaderboard-level-button" id="leaderboard-level-hard" href="/leaderboard/hard">Hard</a>
+        </div>
+    </div>
+    <div id="leaderboard-grid-container">
+        <div class="leaderboard-grid-title">RANK</div>
+        <div class="leaderboard-grid-title">NAME</div>
+        <div class="leaderboard-grid-title">TIME</div>
+
+        {% for i in range(0, table|length) %}
+            <div class="leaderboard-grid-item">{{ i+1 }}</div>
+            <div class="leaderboard-grid-item">{{ table[i].name }}</div>
+            <div class="leaderboard-grid-item">{{ table[i].time }}</div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block style %}
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='allpages.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='leaderboard.css') }}">
+{% endblock %}
+
+{% block script %}
+    <script src="{{ url_for('static', filename='leaderboard.js') }}"></script>
+{% endblock %}

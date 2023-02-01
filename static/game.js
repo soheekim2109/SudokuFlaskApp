@@ -10,13 +10,12 @@ var sudokuInputItems
 var sudokuMemoItems
 var sudokuClearButton
 var sudokuCheckButton
-var sudokuGameoverCorrect
-var sudokuGameoverIncorrect
 var sudokuGameoverResult
 
 var sudokuStartTimestamp
 var sudokuTimerInterval
 var sudokuTimeTaken
+var oneday = 86400000
 
 var sudokuLevel
 var sudokuPuzzle
@@ -36,7 +35,8 @@ var sudokuGameover
 
 
 window.addEventListener('load', function () {
-    sudokuLevel = window.location.pathname.slice(1)
+    // remove /sudoku/
+    sudokuLevel = window.location.pathname.substring(8).replace('/','')
     if (sudokuLevel == '') {
         sudokuLevel = 'easy'
     }
@@ -54,7 +54,7 @@ window.addEventListener('load', function () {
 
     highlightSudokuLevelBar()
     resizeSudokuLevelBar()
-});
+})
 
 window.addEventListener('resize', function () {
     resizeSudokuItemsToSquare()
@@ -106,8 +106,6 @@ function getSudokuElements() {
     sudokuClearButton = document.getElementById('sudoku-clear-button')
     sudokuCheckButton = document.getElementById('sudoku-check-button')
 
-    sudokuGameoverCorrect = document.getElementById('sudoku-gameover-correct')
-    sudokuGameoverIncorrect = document.getElementById('sudoku-gameover-incorrect')
     sudokuGameoverResult = document.getElementsByClassName('sudoku-gameover-result')
 }
 
@@ -273,7 +271,7 @@ function generateSudoku() {
 function formatDuration(timeTaken) {
     let formatted = ""
 
-    if (timeTaken < 86400000) {
+    if (timeTaken < oneday) {
         let hours = Math.floor(timeTaken / 3600000)
         let minutes = Math.floor((timeTaken % 3600000) / 60000)
         let seconds = Math.floor((timeTaken % 60000) / 1000)
@@ -516,11 +514,38 @@ function disableSudokuPlay() {
     sudokuGameplayContainer.style.display = 'none'
 }
 
+function sudokuSetFormValues() {
+    document.getElementById('sudoku-form-level').value = sudokuLevel
+    document.getElementById('sudoku-form-timetaken').value = sudokuTimeTaken
+}
+
 function sudokuShowResult(result) {
-    if (result) {
-        sudokuGameoverCorrect.style.display = 'block'
+    if (result && sudokuTimeTaken < oneday) {
+        // correct and in time
+
+        document.getElementById('sudoku-gameover-correct').style.display = 'block'
+        document.getElementById('sudoku-gameover-correct-intime').style.display = 'block'
+
+        // You took (time taken) to solve (an easy) sudoku.
+        let formattedDuration = "You took " + formatDuration(sudokuTimeTaken) + " to solve "
+        if (sudokuLevel == 'easy') { formattedDuration += "an easy sudoku." }
+        if (sudokuLevel == 'medium') { formattedDuration += "a medium sudoku." }
+        if (sudokuLevel == 'hard') { formattedDuration += "a hard sudoku." }
+
+        document.getElementById('sudoku-result-time').innerText = formattedDuration
+
+        sudokuSetFormValues()
+    } else if (result) {
+        // correct but took too long
+
+        document.getElementById('sudoku-gameover-correct').style.display = 'block'
+        document.getElementById('sudoku-gameover-correct-toolong').style.display = 'block'
+        document.getElementById('sudoku-no-entry').style.display = 'block'
     } else {
-        sudokuGameoverIncorrect.style.display = 'block'
+        // incorrect
+
+        document.getElementById('sudoku-gameover-incorrect').style.display = 'block'
+        document.getElementById('sudoku-no-entry').style.display = 'block'
     }
 }
 

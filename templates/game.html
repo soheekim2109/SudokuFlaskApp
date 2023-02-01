@@ -1,30 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sudoku</title>
-    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='responsive.css') }}">
-    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-</head>
-<header>
-    <h1>Sudoku</h1>
-</header>
-<body>
-    <a id="home-button" href="https://soheekim.dev/">
-        <img src="../static/home-light.png" alt="Back to home" title="Back to home">
-    </a>
+{% extends "base.html" %}
+
+{% block title %}Sudoku{% endblock %}
+
+{% block content %}
+    <header>
+        <h1>Sudoku</h1>
+    </header>
     <div id="sudoku-level-container">
         Level:
         <div class="sudoku-level unselectable" id="sudoku-level-easy">
-            <a href="/easy" onclick="return askBeforeNewGame()">Easy</a>
+            <a href="/sudoku/easy" onclick="return askBeforeNewGame()">Easy</a>
         </div>
         <div class="sudoku-level unselectable" id="sudoku-level-medium">
-            <a href="/medium" onclick="return askBeforeNewGame()">Medium</a>
+            <a href="/sudoku/medium" onclick="return askBeforeNewGame()">Medium</a>
         </div>
         <div class="sudoku-level unselectable" id="sudoku-level-hard">
-            <a href="/hard" onclick="return askBeforeNewGame()">Hard</a>
+            <a href="/sudoku/hard" onclick="return askBeforeNewGame()">Hard</a>
         </div>
     </div>
     <div id="sudoku-everything">
@@ -91,16 +82,42 @@
         <div id="sudoku-gameover-container">
             <div id="sudoku-gameover-correct" style="display: none;">
                 <div class="sudoku-gameover-result">Correct :D</div>
+                <div class="sudoku-gameover-text" id="sudoku-result-time"></div>
+                <div id="sudoku-gameover-correct-intime" style="display: none;">
+                    <form action="/leaderboard" method="post">
+                        <label id="sudoku-form-title" for="name">Enter your name (three letters):</label>
+                        <input id="sudoku-form-input" type="text" name="name" title="Enter three letters" placeholder="ABC" required="true" maxlength="3" pattern="[A-Za-z]{3}">
+                        <input id="sudoku-form-level" type="hidden" name="level">
+                        <input id="sudoku-form-timetaken" type="hidden" name="time-taken">
+                        <input id="sudoku-form-submit" type="submit" value="Submit">
+                    </form>
+                </div>
+                <div id="sudoku-gameover-correct-toolong" style="display: none;">
+                    <div class="sudoku-gameover-text">Try again to solve it in a day.</div>
+                </div>
             </div>
             <div id="sudoku-gameover-incorrect" style="display: none;">
                 <div class="sudoku-gameover-result">Incorrect :(</div>
+                <div class="sudoku-gameover-text">Try again?</div>
+            </div>
+            <div id="sudoku-no-entry" style="display: none;">
+                <div>
+                    <a href="javascript:window.location.reload(true)">Play sudoku again</a>
+                </div>
+                <div>
+                    <a href="/leaderboard">Go see the leaderboard</a>
+                </div>
             </div>
         </div>
     </div>
-    <div id="sourcecode">
-        <a href="https://github.com/soheekim2109/SudokuFlaskApp">Source code</a>
-    </div>
+{% endblock %}
+
+{% block style %}
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='allpages.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='game.css') }}">
+{% endblock %}
+
+{% block script %}
+    <script src="{{ url_for('static', filename='game.js') }}"></script>
     <script src="{{ url_for('static', filename='sudoku.js') }}"></script>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
-</body>
-</html>
+{% endblock %}

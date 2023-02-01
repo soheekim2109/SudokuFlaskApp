@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
+
+
+body, #bottomlink > a, a {
+    color: aliceblue;
+}
+
+body {
+    background-color: rgb(32, 48, 57);
+    padding: 0 10px;
+}
+
+
+#leaderboard-container {
+    font-family: 'Press Start 2P', cursive;
+}
+
+
+
+
+
+#leaderboard-level-container {
+    margin-bottom: 50px;
+}
+#leaderboard-level-title {
+    font-size: 4vw;
+    display: inline-block;
+}
+
+#leaderboard-level-button-container {
+    font-size: 3.5vw;
+    display: inline-block;
+    text-align: center;
+}
+.leaderboard-level-button {
+    text-decoration: none;
+    border: solid 3px;
+    padding: 4px 7px;
+    display: inline-block;
+    color: rgb(164, 191, 191);
+    background-color: rgb(30, 79, 108);
+    margin: 2px 5px;
+}
+.leaderboard-level-button.current {
+    color: aliceblue;
+    background-color: rgb(12, 149, 167);
+}
+.leaderboard-level-button:hover {
+    transform: translateY(-3px);
+}
+.leaderboard-level-button:active {
+    transform: translateY(0);
+}
+
+
+#leaderboard-grid-container {
+    font-size: 4vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr 2.4fr;
+    text-align: center;
+}
+#leaderboard-grid-container > div {
+    margin: 10px 0;
+}
+
+.leaderboard-grid-title {
+    color: rgb(255 255 145);
+}
+.leaderboard-grid-item {
+}
+
+
+
+
+
+
+/* larger than phone screen */
+@media screen and (min-device-width: 600px) and (min-width: 600px) {
+    body {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    #leaderboard-container {
+        /* font-size: 200%; */
+    }
+
+    #leaderboard-level-title {
+        font-size: 160%;
+        display: inline-block;
+    }
+    
+    #leaderboard-level-button-container {
+        font-size: 140%;
+    }
+    #leaderboard-grid-container {
+        font-size: 160%;
+    }
+}
